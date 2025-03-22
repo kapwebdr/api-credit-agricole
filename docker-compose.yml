@@ -9,7 +9,7 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-      - ${CA_BASE_PATH:-/data}:/data
+      - ${CA_BASE_PATH:-./data}:${CA_BASE_PATH:-/data}
     ports:
       - "8000:8000"
     env_file:
