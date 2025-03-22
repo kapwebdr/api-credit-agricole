@@ -54,7 +54,7 @@ class DownloadRequest(BaseModel):
     force: bool = False
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "account_number": "12345678901",
                 "start_date": "01/01/2023",
@@ -68,7 +68,7 @@ class ProcessRequest(BaseModel):
     file_path: Optional[str] = None
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "account_number": "12345678901",
                 "file_path": "/chemin/vers/fichier.xlsx"
@@ -202,9 +202,7 @@ async def download_statements(request: DownloadRequest = Body(...)):
     - end_date: Date de fin au format DD/MM/YYYY (optionnel)
     - force: Force le téléchargement même si le fichier existe déjà
     """
-    print('point')
     try:
-        print('Bonjour')
         logger.info(f"Début de téléchargement avec les paramètres: {request.dict()}")
         cmd = [sys.executable, "get_credit_agricole.py"]
         
@@ -236,12 +234,61 @@ async def download_statements(request: DownloadRequest = Body(...)):
                 detail=f"Erreur lors du téléchargement (code {process.returncode}): {stderr_text}"
             )
         
+        # Extraire les chemins des fichiers téléchargés depuis la sortie
+        downloaded_files = []
+        for line in stdout_text.splitlines():
+            if "Opérations téléchargées avec succès dans" in line:
+                # Extraire le chemin du fichier depuis la ligne
+                parts = line.split("Opérations téléchargées avec succès dans")
+                if len(parts) > 1:
+                    file_path = parts[1].strip()
+                    downloaded_files.append(file_path)
+        
+        # Si aucun fichier n'a été trouvé mais que le téléchargement a réussi,
+        # essayer de déduire les fichiers téléchargés
+        if not downloaded_files:
+            # Obtenir le répertoire dynamique et les comptes
+            dynamic_dir = ca_common.get_dynamic_directory()
+            accounts = [request.account_number] if request.account_number else ca_common.get_account_numbers()
+            extension = ca_common.get_file_extension()
+            
+            # Construire les chemins probables
+            for account in accounts:
+                probable_path = os.path.join(dynamic_dir, f"{account}.{extension}")
+                if os.path.exists(probable_path):
+                    downloaded_files.append(probable_path)
+        
+        # Compter les succès et échecs à partir des logs
+        success_count = 0
+        failed_count = 0
+        failed_accounts = []
+        
+        for line in stdout_text.splitlines():
+            if "Opérations téléchargées avec succès dans" in line:
+                success_count += 1
+            elif "Erreur lors du traitement du compte" in line:
+                failed_count += 1
+                # Extraire le numéro de compte
+                match = line.split("Erreur lors du traitement du compte ")[1].split(":")[0]
+                failed_accounts.append(match)
+        
+        # Message résumé
+        summary = f"{success_count} comptes téléchargés avec succès, {failed_count} échecs"
+        if failed_accounts:
+            summary += f" (échecs: {', '.join(failed_accounts)})"
+        
         logger.info("Téléchargement terminé avec succès")
         return {
-            "status": "success",
-            "message": "Téléchargement terminé avec succès",
-            "details": stdout_text,
-            "account": request.account_number or "all"
+            "status": "success" if success_count > 0 else "partial_success" if success_count > 0 and failed_count > 0 else "error",
+            "message": summary,
+            "account": request.account_number or "all",
+            "downloaded_files": downloaded_files,
+            "statistics": {
+                "success_count": success_count,
+                "failed_count": failed_count,
+                "failed_accounts": failed_accounts
+            },
+            "logs": stdout_text if DEBUG_MODE else None
         }
     except HTTPException:
         raise
@@ -261,9 +308,7 @@ async def process_statements(request: ProcessRequest = Body(...)):
     - account_number: Numéro de compte spécifique (optionnel)
     - file_path: Chemin du fichier à traiter (optionnel)
     """
-    print('process point')
     try:
-        print('Process démarré')
         logger.info(f"Début de traitement avec les paramètres: {request.dict()}")
         cmd = [sys.executable, "process_ca_pdf.py"]
         
@@ -297,12 +342,50 @@ async def process_statements(request: ProcessRequest = Body(...)):
                 detail=f"Erreur lors du traitement (code {process.returncode}): {stderr_text}"
             )
         
+        # Extraire les chemins des fichiers traités depuis la sortie
+        processed_files = []
+        for line in stdout_text.splitlines():
+            if "Traitement terminé. Fichier généré:" in line:
+                # Extraire le chemin du fichier depuis la ligne
+                parts = line.split("Traitement terminé. Fichier généré:")
+                if len(parts) > 1:
+                    file_path = parts[1].strip()
+                    processed_files.append(file_path)
+            elif "Le traitement a réussi. Fichier généré:" in line:
+                parts = line.split("Le traitement a réussi. Fichier généré:")
+                if len(parts) > 1:
+                    file_path = parts[1].strip()
+                    processed_files.append(file_path)
+        
+        # Si aucun fichier n'a été trouvé mais que le traitement a réussi,
+        # essayer de déduire les fichiers traités
+        if not processed_files:
+            # Obtenir le répertoire dynamique
+            dynamic_dir = ca_common.get_dynamic_directory()
+            
+            # Trouver les fichiers Excel récemment créés dans le répertoire
+            import glob
+            from datetime import datetime, timedelta
+            
+            # Chercher les fichiers Excel créés dans les dernières 5 minutes
+            recent_time = datetime.now() - timedelta(minutes=5)
+            for excel_file in glob.glob(os.path.join(dynamic_dir, "ca_operations_*.xlsx")):
+                if os.path.getmtime(excel_file) >= recent_time.timestamp():
+                    processed_files.append(excel_file)
+        
+        # Vérifier si le traitement a réussi en analysant les logs
+        success = any("traitement a réussi" in line.lower() or "traitement terminé" in line.lower() for line in stdout_text.splitlines())
+        
+        # Message résumé
+        summary = f"{len(processed_files)} fichiers traités avec succès" if success else "Traitement terminé sans fichiers générés"
+        
         logger.info("Traitement terminé avec succès")
         return {
-            "status": "success",
-            "message": "Traitement terminé avec succès",
-            "details": stdout_text,
-            "account": request.account_number or "all"
+            "status": "success" if success else "completed_with_warnings",
+            "message": summary,
+            "account": request.account_number or "all",
+            "processed_files": processed_files,
+            "logs": stdout_text if DEBUG_MODE else None
         }
     except HTTPException:
         raise

@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 import re
 import datetime
 import json
-from openpyxl.styles import Font, Alignment, Border, Side, PatternFill, numbers
+from openpyxl import load_workbook
+from openpyxl.styles import Font, Alignment, NamedStyle, Side, PatternFill, numbers
 import argparse
 import sys
 import ca_common
+
 
 def load_tva_rules():
     """Charge les règles de TVA depuis le fichier JSON"""
@@ -429,9 +431,8 @@ def process_ca_statement(input_file=None, output_dir=None):
             tva_sheet.cell(row=row, column=3, value=f"=SUM(C2:C{row-1})")
             tva_sheet.cell(row=row, column=4, value=f"=SUM(D2:D{row-1})")
             tva_sheet.cell(row=row, column=5, value=f"=C{row}-D{row}")
-        
+            
         # Après avoir sauvegardé, rouvrir et corriger les formules SUMIF et appliquer les formats
-        from openpyxl import load_workbook
         wb = load_workbook(output_file)
         
         # Définir les formats de nombre
@@ -531,6 +532,10 @@ def process_ca_statement(input_file=None, output_dir=None):
             adjust_column_width(wb[sheet_name])
         
         # Sauvegarder les modifications
+        if "Normal" not in wb.named_styles:
+            default_style = NamedStyle(name="Normal")
+            wb.add_named_style(default_style)
+        
         wb.save(output_file)
         
         print(f"Traitement terminé. Fichier généré: {output_file}")
