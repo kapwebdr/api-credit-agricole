@@ -277,6 +277,92 @@ async def download_statements(request: DownloadRequest = Body(...)):
         if failed_accounts:
             summary += f" (échecs: {', '.join(failed_accounts)})"
         
+        # Lire les données des fichiers téléchargés
+        all_data = {}
+        
+        try:
+            import pandas as pd
+            
+            for file_path in downloaded_files:
+                account_number = os.path.basename(file_path).split('.')[0]
+                logger.info(f"Extraction des données du fichier pour le compte {account_number}: {file_path}")
+                
+                try:
+                    # Détecter l'en-tête comme dans process_ca_pdf.py
+                    header_row = None
+                    
+                    # Tenter plusieurs lectures pour trouver l'entête
+                    for i in range(30):  # Vérifier jusqu'à 30 lignes
+                        try:
+                            temp_df = pd.read_excel(file_path, header=i)
+                            # Vérifier si les colonnes contiennent 'Date', 'Libellé', 'Débit', 'Crédit'
+                            cols = [str(col).lower() for col in temp_df.columns]
+                            if ('date' in cols and 
+                                any('lib' in col for col in cols) and 
+                                any(term in ''.join(cols) for term in ['débit', 'debit']) and 
+                                any(term in ''.join(cols) for term in ['crédit', 'credit'])):
+                                header_row = i
+                                break
+                        except Exception as e:
+                            logger.debug(f"Erreur lors de la tentative de lecture avec header={i}: {e}")
+                            continue
+                    
+                    if header_row is None:
+                        # Si on n'a pas trouvé d'en-tête, utiliser la première ligne
+                        header_row = 0
+                        logger.warning(f"Impossible de détecter l'en-tête pour {file_path}, utilisation de header=0")
+                    
+                    # Lire le fichier avec l'en-tête identifié
+                    df = pd.read_excel(file_path, header=header_row)
+                    
+                    # Nettoyer et renommer les colonnes
+                    df.columns = [str(col).strip() for col in df.columns]
+                    
+                    # Mapper les noms de colonnes
+                    column_mapping = {}
+                    for col in df.columns:
+                        col_lower = str(col).lower()
+                        if 'date' in col_lower:
+                            column_mapping[col] = 'Date'
+                        elif any(term in col_lower for term in ['libellé', 'libelle', 'lib']):
+                            column_mapping[col] = 'Libellé'
+                        elif any(term in col_lower for term in ['débit', 'debit']):
+                            column_mapping[col] = 'Débit'
+                        elif any(term in col_lower for term in ['crédit', 'credit']):
+                            column_mapping[col] = 'Crédit'
+                    
+                    # Renommer les colonnes identifiées
+                    df = df.rename(columns=column_mapping)
+                    
+                    # Nettoyer la colonne de date (convertir en chaîne pour JSON)
+                    if 'Date' in df.columns:
+                        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+                        df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
+                    
+                    # Convertir en liste de dictionnaires pour JSON
+                    data_list = df.fillna('').to_dict(orient='records')
+                    
+                    # Stocker les données par compte
+                    all_data[account_number] = {
+                        "headers": list(df.columns),
+                        "data": data_list
+                    }
+                    
+                    logger.info(f"Données extraites avec succès pour le compte {account_number}: {len(data_list)} lignes")
+                    
+                except Exception as e:
+                    logger.error(f"Erreur lors de l'extraction des données pour {file_path}: {e}")
+                    logger.error(traceback.format_exc())
+                    all_data[account_number] = {
+                        "headers": [],
+                        "data": [],
+                        "error": str(e)
+                    }
+            
+        except Exception as extract_error:
+            logger.error(f"Erreur lors de l'extraction des données des fichiers: {extract_error}")
+            logger.error(traceback.format_exc())
+        
         logger.info("Téléchargement terminé avec succès")
         return {
             "status": "success" if success_count > 0 else "partial_success" if success_count > 0 and failed_count > 0 else "error",
@@ -288,6 +374,7 @@ async def download_statements(request: DownloadRequest = Body(...)):
                 "failed_count": failed_count,
                 "failed_accounts": failed_accounts
             },
+            "data": all_data,
             "logs": stdout_text if DEBUG_MODE else None
         }
     except HTTPException:
