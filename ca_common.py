@@ -45,11 +45,9 @@ def get_dynamic_directory():
     
     # Création du chemin dynamique
     base_path = os.getenv('CA_BASE_PATH', '')
-    
     # Format du chemin dynamique: BASE_PATH/ANNÉE/MOIS
     year_month_dir = f"{dates['year']}/{dates['month']:02d}"
     dynamic_dir = os.path.join(base_path, year_month_dir)
-    
     # Créer le répertoire si nécessaire
     os.makedirs(dynamic_dir, exist_ok=True)
     
