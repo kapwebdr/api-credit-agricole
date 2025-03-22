@@ -52,4 +52,5 @@ elif [ "$1" = "process" ]; then
 else
     # Mode par défaut: API
     echo "Démarrage de l'API Crédit Agricole..."
-    exec uvicorn ca_api:app --host 0.0.0.0 --port 8000 
+    exec uvicorn ca_api:app --host 0.0.0.0 --port 8000
+fi 
