@@ -105,6 +105,9 @@ def main():
     parser = argparse.ArgumentParser(description="Télécharge les relevés de compte du Crédit Agricole")
     parser.add_argument("--env", help="Chemin vers un fichier .env alternatif")
     parser.add_argument("--account", help="Numéro de compte spécifique à traiter (si non spécifié, tous les comptes sont traités)")
+    parser.add_argument("--start-date", help="Date de début au format DD/MM/YYYY (si non spécifiée, début du mois précédent)")
+    parser.add_argument("--end-date", help="Date de fin au format DD/MM/YYYY (si non spécifiée, fin du mois précédent)")
+    parser.add_argument("--force", action="store_true", help="Force le téléchargement même si le fichier existe déjà")
     args = parser.parse_args()
     
     # Charger le fichier .env approprié
@@ -140,10 +143,29 @@ def main():
     else:
         accounts = all_accounts
     
-    # Dates du mois précédent
-    dates = ca_common.get_previous_month_dates()
-    date_start = dates["date_start"]
-    date_end = dates["date_end"]
+    # Obtenir les dates (utiliser celles fournies en paramètre si présentes)
+    if args.start_date and args.end_date:
+        date_start = args.start_date
+        date_end = args.end_date
+        print(f"Utilisation des dates fournies: {date_start} - {date_end}")
+    elif args.start_date:
+        date_start = args.start_date
+        # Si seulement la date de début est fournie, utiliser la date de fin par défaut
+        dates = ca_common.get_previous_month_dates()
+        date_end = dates["date_end"]
+        print(f"Utilisation de la date de début fournie et date de fin par défaut: {date_start} - {date_end}")
+    elif args.end_date:
+        date_end = args.end_date
+        # Si seulement la date de fin est fournie, utiliser la date de début par défaut
+        dates = ca_common.get_previous_month_dates()
+        date_start = dates["date_start"]
+        print(f"Utilisation de la date de fin fournie et date de début par défaut: {date_start} - {date_end}")
+    else:
+        # Dates du mois précédent par défaut
+        dates = ca_common.get_previous_month_dates()
+        date_start = dates["date_start"]
+        date_end = dates["date_end"]
+        print(f"Utilisation des dates par défaut: {date_start} - {date_end}")
     
     # Obtention du répertoire dynamique
     dynamic_dir = ca_common.get_dynamic_directory()
@@ -163,6 +185,13 @@ def main():
     # Traiter chaque compte
     success_count = 0
     for account_number in accounts:
+        # Vérifier si le fichier existe déjà et si on ne force pas le téléchargement
+        output_file = os.path.join(dynamic_dir, f"{account_number}.{file_extension}")
+        if os.path.exists(output_file) and not args.force:
+            print(f"\n--- Compte {account_number}: fichier déjà présent, ignoré (utilisez --force pour forcer) ---")
+            continue
+            
+        # Traiter le compte
         if process_account(account_number, session, date_start, date_end, dynamic_dir, file_extension):
             success_count += 1
     
