@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  ca-api:
+    image: python:3.10-slim
+    container_name: ca-api
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ${CA_BASE_PATH:-./data}:${CA_BASE_PATH:-/app/data}
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: >
+      bash -c "apt-get update && 
+      apt-get install -y curl libxml2-dev libxslt-dev gcc g++ && 
+      chmod +x /app/docker-entrypoint.sh && 
+      /app/docker-entrypoint.sh python ca_api.py"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  ca_data:
+    driver: local
+
+networks:
+  ca-network:
+    driver: bridge 

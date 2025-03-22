@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Distribution / packaging
+dist/
+build/
+downloads/
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Logs
+logs/
+*.log
+
+# Docker
+.dockerignore
+docker-compose*.yml
+
+# Temp files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Ne pas exclure les fichiers de données générés car ils sont montés sur un volume
+# data/
+# *.xlsx 

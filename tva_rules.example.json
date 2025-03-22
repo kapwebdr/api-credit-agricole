@@ -1,0 +1,18 @@
+{
+  "tva_rates": {
+    "standard": 20.0,
+    "intermédiaire": 10.0,
+    "réduit": 5.5,
+    "particulier": 7.0,
+    "super_réduit": 2.1,
+    "exonéré": 0.0
+  },
+  "keywords": {
+    "standard": ["ovh", "amazon", "github", "hébergement", "informatique", "logiciel", "saas"],
+    "intermédiaire": ["restaurant", "resto", "hôtel", "transport", "location"],
+    "réduit": ["alimentation", "livre", "médicament", "produit alimentaire"],
+    "particulier": ["rénovation", "travaux", "amélioration habitation"],
+    "super_réduit": ["presse", "journal", "médicament remboursé"],
+    "exonéré": ["formation", "impôt", "assurance", "banque", "santé"]
+  }
+} 

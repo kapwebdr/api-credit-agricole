@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+creditagricole_particuliers
+pandas
+openpyxl
+python-multipart
+pydantic
+lxml
+requests
