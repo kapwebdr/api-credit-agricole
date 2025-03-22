@@ -2401,3 +2401,679 @@ Le traitement automatique a réussi.
   warn("Workbook contains no default style, apply openpyxl's default")
 
 2025-03-22 11:59:25,680 - ca_api - INFO - Traitement terminé avec succès
+2025-03-22 20:46:59,227 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:46:59,228 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:47:01,517 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:47:02,031 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:47:02,290 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:47:02,290 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:47:02,315 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,317 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,319 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,322 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,324 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,326 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,328 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,330 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,332 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,334 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,336 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,338 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,340 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,342 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,345 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,347 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,349 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,351 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,353 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,355 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,358 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,361 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:47:02,361 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:47:02,364 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:47:02,364 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:48:09,294 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:48:09,295 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:48:11,479 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:48:11,479 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:48:11,534 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:48:11,534 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:48:11,559 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,561 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,564 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,567 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,569 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,572 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,574 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,576 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,578 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,580 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,583 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,586 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,589 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,591 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,594 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,597 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,600 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,602 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,605 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,608 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,610 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,614 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:48:11,614 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:48:11,617 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:48:11,617 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:50:31,390 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:50:31,390 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:50:33,566 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:50:33,567 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:50:33,632 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:50:33,632 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:50:33,657 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,659 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,662 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,664 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,666 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,669 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,671 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,674 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,676 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,678 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,681 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,684 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,687 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,689 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,691 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,694 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,696 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,699 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,702 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,705 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,707 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,709 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:50:33,709 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:50:33,713 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:50:33,713 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:52:13,403 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:52:13,404 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:52:15,576 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:52:15,576 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:52:15,649 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:52:15,649 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:52:15,673 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,675 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,677 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,680 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,682 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,684 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,686 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,688 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,691 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,693 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,695 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,697 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,699 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,702 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,704 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,706 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,708 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,710 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,712 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,714 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,717 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,719 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:52:15,719 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:52:15,723 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:52:15,723 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:53:34,930 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:53:34,930 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:53:37,096 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:53:37,096 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:53:37,154 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:53:37,154 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:53:37,176 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,179 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,181 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,183 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,186 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,188 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,191 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,193 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,195 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,198 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,200 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,202 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,205 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,207 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,209 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,211 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,213 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,215 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,218 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,220 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,223 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,225 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:53:37,225 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:53:37,228 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:53:37,228 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:54:18,708 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:54:18,708 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:54:21,115 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:54:21,115 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:54:21,172 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:54:21,172 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:54:21,197 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,200 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,202 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,204 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,207 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,209 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,211 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,213 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,216 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,218 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,221 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,223 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,225 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,227 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,229 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,232 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,235 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,237 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,239 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,241 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,244 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,246 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:54:21,246 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:54:21,250 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:54:21,250 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:57:12,676 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:57:12,676 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:57:14,829 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:57:14,830 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:57:14,887 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:57:14,887 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:57:14,915 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,917 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,919 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,922 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,924 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,926 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,929 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,931 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,934 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,936 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,938 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,941 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,943 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,946 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,948 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,951 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,953 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,955 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,957 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,960 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,962 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,965 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:57:14,965 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:57:14,968 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:57:14,968 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 20:59:36,010 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 20:59:36,010 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 20:59:38,271 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 20:59:38,271 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 20:59:38,325 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 20:59:38,325 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 20:59:38,349 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,351 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,354 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,356 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,359 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,361 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,364 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,367 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,369 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,372 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,374 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,376 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,378 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,380 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,383 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,386 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,388 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,391 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,393 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,396 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,398 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,401 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 20:59:38,401 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 20:59:38,404 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 20:59:38,405 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 21:01:01,253 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 21:01:01,253 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 21:01:03,538 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 21:01:03,538 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 21:01:03,597 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 21:01:03,597 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 21:01:03,624 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,626 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,628 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,631 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,633 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,636 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,638 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,641 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,643 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,646 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,649 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,651 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,653 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,655 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,658 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,661 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,663 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,666 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,669 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,671 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,675 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,678 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:01:03,678 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 21:01:03,681 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 21:01:03,681 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 21:03:30,045 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 21:03:30,046 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 21:03:32,333 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 21:03:32,333 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 21:03:32,387 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 21:03:32,387 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 21:03:32,412 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,415 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,417 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,419 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,422 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,424 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,427 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,429 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,432 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,434 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,436 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,438 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,441 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,443 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,445 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,448 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,451 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,453 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,455 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,457 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,459 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,461 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:03:32,461 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 21:03:32,464 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 21:03:32,464 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 21:05:48,784 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': None, 'end_date': None, 'force': False}
+2025-03-22 21:05:48,784 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 21:05:51,090 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 21:05:51,091 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 21:05:51,151 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 21:05:51,151 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 21:05:51,177 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,180 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,182 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,185 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,187 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,191 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,193 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,196 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,198 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,200 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,203 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,205 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,207 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,210 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,212 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,214 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,217 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,219 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,222 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,224 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,227 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,230 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:05:51,230 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 21:05:51,234 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 21:05:51,234 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 21:13:29,247 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': '01/01/2025', 'end_date': None, 'force': False}
+2025-03-22 21:13:29,248 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 21:13:31,457 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 21:13:31,458 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 21:13:31,521 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 21:13:31,521 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 21:13:31,544 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,546 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,548 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,551 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,553 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,556 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,558 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,560 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,562 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,564 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,566 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,568 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,571 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,573 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,576 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,578 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,581 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,583 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,585 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,587 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,589 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,592 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:13:31,592 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 21:13:31,595 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 21:13:31,595 - ca_api - INFO - Téléchargement terminé avec succès
+2025-03-22 21:14:49,160 - ca_api - INFO - Début de téléchargement avec les paramètres: {'account_number': None, 'start_date': '01/01/2025', 'end_date': None, 'force': True}
+2025-03-22 21:14:49,160 - ca_api - DEBUG - Commande de téléchargement: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/.venv/bin/python get_credit_agricole.py
+2025-03-22 21:14:51,488 - ca_api - DEBUG - Sortie standard: Utilisation du fichier .env par défaut
+Période: 01/02/2025 - 28/02/2025
+Répertoire de destination: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+Nombre de comptes à traiter: 2
+Authentification réussie
+
+--- Traitement du compte 70089352734 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['70089352734'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'70089352734': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+--- Traitement du compte 72029382655 ---
+Téléchargement des opérations vers /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Téléchargement depuis https://www.credit-agricole.fr/ca-centreloire/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json
+Paramètres: {'comptes': ['72029382655'], 'format': 'xlsx', 'debut': '01/02/2025', 'fin': '28/02/2025', 'type': 'm', 'dateDebutList': {'72029382655': '01/02/2025'}}
+Opérations téléchargées avec succès dans /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx --output /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02
+
+Traitement terminé: 2/2 comptes traités avec succès
+
+2025-03-22 21:14:51,488 - ca_api - INFO - Extraction des données du fichier pour le compte 70089352734: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/70089352734.xlsx
+2025-03-22 21:14:51,563 - ca_api - INFO - Données extraites avec succès pour le compte 70089352734: 60 lignes
+2025-03-22 21:14:51,563 - ca_api - INFO - Extraction des données du fichier pour le compte 72029382655: /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx
+2025-03-22 21:14:51,585 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=8: Passed header=[8], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,587 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=9: Passed header=[9], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,589 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=10: Passed header=[10], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,592 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=11: Passed header=[11], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,594 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=12: Passed header=[12], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,596 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=13: Passed header=[13], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,598 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=14: Passed header=[14], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,600 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=15: Passed header=[15], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,602 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=16: Passed header=[16], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,605 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=17: Passed header=[17], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,607 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=18: Passed header=[18], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,608 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=19: Passed header=[19], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,610 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=20: Passed header=[20], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,613 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=21: Passed header=[21], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,615 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=22: Passed header=[22], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,617 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=23: Passed header=[23], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,619 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=24: Passed header=[24], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,621 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=25: Passed header=[25], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,623 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=26: Passed header=[26], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,625 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=27: Passed header=[27], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,628 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=28: Passed header=[28], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,630 - ca_api - DEBUG - Erreur lors de la tentative de lecture avec header=29: Passed header=[29], len of 1, but only 8 lines in file (sheet: 0)
+2025-03-22 21:14:51,630 - ca_api - WARNING - Impossible de détecter l'en-tête pour /Volumes/CloudDatas/SyncMac/kAi/Servers/CreditAgricole/data/2025/02/72029382655.xlsx, utilisation de header=0
+2025-03-22 21:14:51,633 - ca_api - INFO - Données extraites avec succès pour le compte 72029382655: 7 lignes
+2025-03-22 21:14:51,633 - ca_api - INFO - Téléchargement terminé avec succès

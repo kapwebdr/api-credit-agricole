@@ -206,8 +206,18 @@ async def download_statements(request: DownloadRequest = Body(...)):
         logger.info(f"Début de téléchargement avec les paramètres: {request.dict()}")
         cmd = [sys.executable, "get_credit_agricole.py"]
         
+        # Ajouter les paramètres optionnels s'ils sont présents
         if request.account_number:
             cmd.extend(["--account", request.account_number])
+        
+        if request.start_date:
+            cmd.extend(["--start-date", request.start_date])
+        
+        if request.end_date:
+            cmd.extend(["--end-date", request.end_date])
+        
+        if request.force:
+            cmd.append("--force")
         
         # Logs pour le débogage
         logger.debug(f"Commande de téléchargement: {' '.join(cmd)}")
