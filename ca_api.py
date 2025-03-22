@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, Header, status, Body, Request, BackgroundTasks
+from fastapi import FastAPI, Depends, HTTPException, Header, status, Body, Request
 from fastapi.security.api_key import APIKeyHeader
 from fastapi.responses import JSONResponse
 from typing import List, Dict, Optional, Any
@@ -13,7 +13,6 @@ import subprocess
 import sys
 import traceback
 import logging
-import pandas as pd
 
 # Configuration du logger
 logging.basicConfig(
@@ -84,12 +83,6 @@ class TVARule(BaseModel):
 class TVARules(BaseModel):
     tva_rates: Dict[str, float]
     keywords: Dict[str, List[str]]
-
-class DownloadResponse(BaseModel):
-    success: bool
-    message: str
-    files: List[str]
-    data: Dict[str, Dict[str, Any]]
 
 # Middleware pour capturer les exceptions de validation
 @app.middleware("http")
@@ -199,17 +192,21 @@ async def get_accounts():
             detail=f"Erreur lors de la récupération des comptes: {str(e)}"
         )
 
-@app.post("/download", response_model=DownloadResponse, tags=["Téléchargement"], dependencies=[Depends(verify_api_key)])
-async def download_statements(request: DownloadRequest, background_tasks: BackgroundTasks):
+@app.post("/download", tags=["Téléchargement"], dependencies=[Depends(verify_api_key)])
+async def download_statements(request: DownloadRequest = Body(...)):
     """
-    Télécharger les relevés de compte du Crédit Agricole
-    """
-    logger.info(f"Début de la requête de téléchargement: {request}")
+    Télécharge les relevés bancaires
     
+    - account_number: Numéro de compte spécifique (optionnel)
+    - start_date: Date de début au format DD/MM/YYYY (optionnel)
+    - end_date: Date de fin au format DD/MM/YYYY (optionnel)
+    - force: Force le téléchargement même si le fichier existe déjà
+    """
     try:
-        # Construction de la commande
-        cmd = ["python3", ca_common.get_script_path("get_credit_agricole.py")]
+        logger.info(f"Début de téléchargement avec les paramètres: {request.dict()}")
+        cmd = [sys.executable, "get_credit_agricole.py"]
         
+        # Ajouter les paramètres optionnels s'ils sont présents
         if request.account_number:
             cmd.extend(["--account", request.account_number])
         
@@ -222,9 +219,10 @@ async def download_statements(request: DownloadRequest, background_tasks: Backgr
         if request.force:
             cmd.append("--force")
         
-        logger.debug(f"Commande à exécuter: {' '.join(cmd)}")
+        # Logs pour le débogage
+        logger.debug(f"Commande de téléchargement: {' '.join(cmd)}")
         
-        # Exécution du script en subprocess
+        # Exécuter le script de téléchargement dans un processus séparé
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -232,105 +230,171 @@ async def download_statements(request: DownloadRequest, background_tasks: Backgr
         )
         
         stdout, stderr = await process.communicate()
+        stdout_text = stdout.decode()
+        stderr_text = stderr.decode()
         
-        stdout_str = stdout.decode()
-        stderr_str = stderr.decode()
+        logger.debug(f"Sortie standard: {stdout_text}")
+        if stderr_text:
+            logger.error(f"Erreur standard: {stderr_text}")
         
-        logger.debug(f"Sortie standard: {stdout_str}")
-        if stderr_str:
-            logger.warning(f"Erreur standard: {stderr_str}")
-        
-        # Vérification du code de retour
         if process.returncode != 0:
-            error_msg = f"Échec du téléchargement (code: {process.returncode}): {stderr_str}"
-            logger.error(error_msg)
-            return DownloadResponse(
-                success=False,
-                message=error_msg,
-                files=[]
+            logger.error(f"Échec du téléchargement avec code: {process.returncode}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Erreur lors du téléchargement (code {process.returncode}): {stderr_text}"
             )
         
-        # Extraction des fichiers générés à partir de la sortie standard
-        files = []
-        for line in stdout_str.splitlines():
-            if "Fichier téléchargé:" in line:
-                file_path = line.split("Fichier téléchargé:")[1].strip()
-                files.append(file_path)
+        # Extraire les chemins des fichiers téléchargés depuis la sortie
+        downloaded_files = []
+        for line in stdout_text.splitlines():
+            if "Opérations téléchargées avec succès dans" in line:
+                # Extraire le chemin du fichier depuis la ligne
+                parts = line.split("Opérations téléchargées avec succès dans")
+                if len(parts) > 1:
+                    file_path = parts[1].strip()
+                    downloaded_files.append(file_path)
         
-        if not files:
-            # Le script s'est terminé avec succès mais aucun fichier n'a été téléchargé
-            # (peut-être que tous existaient déjà et --force n'a pas été utilisé)
-            return DownloadResponse(
-                success=True,
-                message="Aucun nouveau fichier téléchargé. Les fichiers existent peut-être déjà.",
-                files=[]
-            )
+        # Si aucun fichier n'a été trouvé mais que le téléchargement a réussi,
+        # essayer de déduire les fichiers téléchargés
+        if not downloaded_files:
+            # Obtenir le répertoire dynamique et les comptes
+            dynamic_dir = ca_common.get_dynamic_directory()
+            accounts = [request.account_number] if request.account_number else ca_common.get_account_numbers()
+            extension = ca_common.get_file_extension()
+            
+            # Construire les chemins probables
+            for account in accounts:
+                probable_path = os.path.join(dynamic_dir, f"{account}.{extension}")
+                if os.path.exists(probable_path):
+                    downloaded_files.append(probable_path)
         
-        # Analyse des fichiers téléchargés pour extraire les données
-        data_by_account = {}
+        # Compter les succès et échecs à partir des logs
+        success_count = 0
+        failed_count = 0
+        failed_accounts = []
         
-        for file_path in files:
-            try:
-                # Extraire le numéro de compte du nom de fichier
-                file_name = os.path.basename(file_path)
-                account_number = file_name.split('.')[0]
+        for line in stdout_text.splitlines():
+            if "Opérations téléchargées avec succès dans" in line:
+                success_count += 1
+            elif "Erreur lors du traitement du compte" in line:
+                failed_count += 1
+                # Extraire le numéro de compte
+                match = line.split("Erreur lors du traitement du compte ")[1].split(":")[0]
+                failed_accounts.append(match)
+        
+        # Message résumé
+        summary = f"{success_count} comptes téléchargés avec succès, {failed_count} échecs"
+        if failed_accounts:
+            summary += f" (échecs: {', '.join(failed_accounts)})"
+        
+        # Lire les données des fichiers téléchargés
+        all_data = {}
+        
+        try:
+            import pandas as pd
+            
+            for file_path in downloaded_files:
+                account_number = os.path.basename(file_path).split('.')[0]
+                logger.info(f"Extraction des données du fichier pour le compte {account_number}: {file_path}")
                 
-                # Lire le fichier Excel
-                df = pd.read_excel(file_path, header=None)
-                
-                # Détecter la ligne d'en-tête (généralement après "Date")
-                header_row = None
-                for i in range(min(30, len(df))):  # Chercher dans les 30 premières lignes
-                    if "Date" in df.iloc[i].values:
-                        header_row = i
-                        break
-                
-                if header_row is not None:
-                    # Utiliser cette ligne comme en-tête et les données qui suivent
-                    headers = df.iloc[header_row].tolist()
-                    data = df.iloc[header_row+1:].copy()
-                    data.columns = headers
+                try:
+                    # Détecter l'en-tête comme dans process_ca_pdf.py
+                    header_row = None
                     
-                    # Nettoyer les en-têtes (supprimer les espaces, etc.)
-                    clean_headers = [str(h).strip() if isinstance(h, str) else str(h) for h in headers]
-                    data.columns = clean_headers
+                    # Tenter plusieurs lectures pour trouver l'entête
+                    for i in range(30):  # Vérifier jusqu'à 30 lignes
+                        try:
+                            temp_df = pd.read_excel(file_path, header=i)
+                            # Vérifier si les colonnes contiennent 'Date', 'Libellé', 'Débit', 'Crédit'
+                            cols = [str(col).lower() for col in temp_df.columns]
+                            if ('date' in cols and 
+                                any('lib' in col for col in cols) and 
+                                any(term in ''.join(cols) for term in ['débit', 'debit']) and 
+                                any(term in ''.join(cols) for term in ['crédit', 'credit'])):
+                                header_row = i
+                                break
+                        except Exception as e:
+                            logger.debug(f"Erreur lors de la tentative de lecture avec header={i}: {e}")
+                            continue
                     
-                    # Conversion en dictionnaire pour la réponse JSON
-                    data_dict = data.fillna("").to_dict(orient='records')
+                    if header_row is None:
+                        # Si on n'a pas trouvé d'en-tête, utiliser la première ligne
+                        header_row = 0
+                        logger.warning(f"Impossible de détecter l'en-tête pour {file_path}, utilisation de header=0")
                     
-                    # Conversion des dates au format ISO pour JSON
-                    for row in data_dict:
-                        for key, value in row.items():
-                            if isinstance(value, pd.Timestamp):
-                                row[key] = value.strftime('%Y-%m-%d')
+                    # Lire le fichier avec l'en-tête identifié
+                    df = pd.read_excel(file_path, header=header_row)
                     
-                    data_by_account[account_number] = {
-                        "headers": clean_headers,
-                        "data": data_dict
+                    # Nettoyer et renommer les colonnes
+                    df.columns = [str(col).strip() for col in df.columns]
+                    
+                    # Mapper les noms de colonnes
+                    column_mapping = {}
+                    for col in df.columns:
+                        col_lower = str(col).lower()
+                        if 'date' in col_lower:
+                            column_mapping[col] = 'Date'
+                        elif any(term in col_lower for term in ['libellé', 'libelle', 'lib']):
+                            column_mapping[col] = 'Libellé'
+                        elif any(term in col_lower for term in ['débit', 'debit']):
+                            column_mapping[col] = 'Débit'
+                        elif any(term in col_lower for term in ['crédit', 'credit']):
+                            column_mapping[col] = 'Crédit'
+                    
+                    # Renommer les colonnes identifiées
+                    df = df.rename(columns=column_mapping)
+                    
+                    # Nettoyer la colonne de date (convertir en chaîne pour JSON)
+                    if 'Date' in df.columns:
+                        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+                        df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
+                    
+                    # Convertir en liste de dictionnaires pour JSON
+                    data_list = df.fillna('').to_dict(orient='records')
+                    
+                    # Stocker les données par compte
+                    all_data[account_number] = {
+                        "headers": list(df.columns),
+                        "data": data_list
                     }
                     
-                    logger.info(f"Données extraites pour le compte {account_number}: {len(data_dict)} lignes")
-                else:
-                    logger.warning(f"Impossible de trouver l'en-tête dans le fichier {file_path}")
-            except Exception as e:
-                logger.error(f"Erreur lors de l'extraction des données du fichier {file_path}: {str(e)}")
-                # On continue avec les autres fichiers même si un échoue
-        
-        # Créer la réponse
-        return DownloadResponse(
-            success=True,
-            message=f"{len(files)} fichier(s) téléchargé(s) avec succès",
-            files=files,
-            data=data_by_account
-        )
+                    logger.info(f"Données extraites avec succès pour le compte {account_number}: {len(data_list)} lignes")
+                    
+                except Exception as e:
+                    logger.error(f"Erreur lors de l'extraction des données pour {file_path}: {e}")
+                    logger.error(traceback.format_exc())
+                    all_data[account_number] = {
+                        "headers": [],
+                        "data": [],
+                        "error": str(e)
+                    }
             
+        except Exception as extract_error:
+            logger.error(f"Erreur lors de l'extraction des données des fichiers: {extract_error}")
+            logger.error(traceback.format_exc())
+        
+        logger.info("Téléchargement terminé avec succès")
+        return {
+            "status": "success" if success_count > 0 else "partial_success" if success_count > 0 and failed_count > 0 else "error",
+            "message": summary,
+            "account": request.account_number or "all",
+            "downloaded_files": downloaded_files,
+            "statistics": {
+                "success_count": success_count,
+                "failed_count": failed_count,
+                "failed_accounts": failed_accounts
+            },
+            "data": all_data,
+            "logs": stdout_text if DEBUG_MODE else None
+        }
+    except HTTPException:
+        raise
     except Exception as e:
-        error_msg = f"Erreur lors du téléchargement: {str(e)}"
-        logger.error(error_msg)
-        return DownloadResponse(
-            success=False,
-            message=error_msg,
-            files=[]
+        logger.error(f"Exception lors du téléchargement: {e}")
+        logger.error(traceback.format_exc())
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erreur lors du téléchargement: {str(e)}"
         )
 
 @app.post("/process", tags=["Traitement"], dependencies=[Depends(verify_api_key)])
