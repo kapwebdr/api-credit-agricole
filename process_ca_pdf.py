@@ -52,7 +52,7 @@ def determine_tva_type(libelle, rules):
     # Par défaut, TVA standard
     return "standard"
 
-def process_ca_statement(input_file=None, output_dir=None):
+def process_ca_statement(input_file=None, output_dir=None, account=None):
     """
     Traite un relevé bancaire du Crédit Agricole au format Excel
     """
@@ -232,7 +232,7 @@ def process_ca_statement(input_file=None, output_dir=None):
         
         # Créer le fichier de sortie
         today = datetime.datetime.now().strftime("%Y%m%d")
-        output_file = os.path.join(output_dir, f"ca_operations_{today}.xlsx")
+        output_file = os.path.join(output_dir, f"ca_operations_{account}_{today}.xlsx")
         
         # Utiliser ExcelWriter avec le moteur openpyxl pour les formules
         with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
@@ -597,7 +597,7 @@ def process_files_automatically():
     success_count = 0
     for filepath, account in account_files:
         print(f"\n--- Traitement du fichier pour le compte {account} ---")
-        result = process_ca_statement(filepath, dynamic_dir)
+        result = process_ca_statement(filepath, dynamic_dir,account)
         if result:
             success_count += 1
             print(f"Traitement réussi pour {account}")
@@ -623,7 +623,7 @@ def main():
     # Mode spécifique si un fichier d'entrée est fourni
     if args.input:
         # Traiter un fichier spécifique
-        result = process_ca_statement(args.input, args.output)
+        result = process_ca_statement(args.input, args.output, args.account)
         
         if not result:
             print("Le traitement a échoué.")
@@ -641,7 +641,7 @@ def main():
             sys.exit(1)
         
         filepath, _ = account_files[0]
-        result = process_ca_statement(filepath, args.output or dynamic_dir)
+        result = process_ca_statement(filepath, args.output or dynamic_dir, args.account)
         
         if not result:
             print("Le traitement a échoué.")
