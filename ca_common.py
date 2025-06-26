@@ -2,6 +2,9 @@ import os
 import sys
 import datetime
 from dotenv import load_dotenv
+from urllib import parse
+import requests
+import json
 
 def load_environment(env_path=None):
     """Charge le fichier .env approprié"""
@@ -105,3 +108,168 @@ def get_account_files(directory=None, account_number=None, extension=None):
                 result.append((filepath, acc))
         
         return result 
+    
+
+class Authentificate:
+    def __init__(self, username, password, region):
+        """authenticator class"""
+        self.url = "https://www.credit-agricole.fr"
+        self.ssl_verify = True
+        self.username = username
+        self.password = password
+        self.cookies = None
+        self.region = region
+        
+        self.authenticate()
+        
+    def map_digit(self, key_layout, digit):
+        """map digit with key layout"""
+        i = 0
+        for k in key_layout:
+            if int(digit) == int(k):
+                return i
+            i += 1
+            
+    def authenticate(self):
+        """authenticate user"""
+        # get the keypad layout for the password
+        url = f"{self.url}/ca-{self.region}/particulier/"
+        url += "acceder-a-mes-comptes.authenticationKeypad.json"
+        r = requests.post(url=url,
+                          verify=self.ssl_verify)
+        if r.status_code != 200:
+            raise Exception( "[error] keypad: %s - %s" % (r.status_code, r.text) )
+
+        self.cookies = r.cookies 
+        rsp = json.loads(r.text)
+        self.keypadId = rsp["keypadId"]
+        
+        # compute the password according to the layout
+        j_password = []
+        for d in self.password:
+            k = self.map_digit(key_layout=rsp["keyLayout"], digit=d)
+            j_password.append( "%s" % k)
+
+        # authenticate the user
+        url = f"{self.url}/ca-{self.region}/particulier/"
+        url += "acceder-a-mes-comptes.html/j_security_check"
+        headers={'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        payload = {'j_password': ",".join(j_password),
+                   'path': '/content/npc/start',
+                   'j_path_ressource': f'%2Fca-{self.region}%2Fparticulier%2Foperations%2Fsynthese.html',
+                   'j_username': self.username,
+                   'keypadId': rsp["keypadId"],
+                   'j_validate': "true"}
+        r2 = requests.post(url=url,
+                          data=parse.urlencode(payload),
+                          headers=headers,
+                          verify=self.ssl_verify,
+                          cookies = r.cookies)
+        if r2.status_code != 200:
+            raise Exception( "[error] securitycheck: %s - %s" % (r2.status_code, r2.text) )
+        # success, extract cookies and save-it
+        self.cookies = requests.cookies.merge_cookies(self.cookies, r2.cookies)
+        
+
+
+
+class Accounts:
+    def __init__(self, session,region):
+        """operations class"""
+        self.url = "https://www.credit-agricole.fr"
+        self.session = session
+        self.list = []
+        self.region = region
+        
+    def __iter__(self):
+        """iter"""
+        self.n = 0
+        return self
+        
+    def __next__(self):
+        """next"""
+        if self.n < len(self.list):
+            op = self.list[self.n]
+            self.n += 1
+            return op
+        else:
+            raise StopIteration
+    
+    def process(self,account_number, date_start, date_end, dynamic_dir, file_extension):
+        """Traite un compte spécifique et télécharge ses opérations"""
+        print(f"\n--- Traitement du compte {account_number} ---")
+        
+        try:
+            # Définir les chemins de sortie avec le numéro de compte comme nom de fichier
+            operations_file = os.path.join(dynamic_dir, f"{account_number}.{file_extension}")
+            
+            print(f"Téléchargement des opérations vers {operations_file}")
+
+            # Téléchargement
+            self.download_operations_file(
+                account_number=account_number,
+                format=file_extension, 
+                output_path=operations_file,
+                date_start=date_start,
+                date_stop=date_end
+            )
+            
+            print(f"Opérations téléchargées avec succès dans {operations_file}")
+            print(f"Pour traiter ce fichier, utilisez: python process_ca_pdf.py --input {operations_file} --output {dynamic_dir}")
+            return True
+        except Exception as e:
+            print(f"Erreur lors du traitement du compte {account_number}: {e}")
+            return False
+             
+    def download_operations_file(self, account_number, format="xlsx", output_path=None, date_start=None, date_stop=None):
+        """Télécharge les opérations via l'API d'export du CA
+        
+        Args:
+            format (str): Format d'export ('xlsx', 'csv', 'pdf', etc.)
+            output_path (str): Chemin où sauvegarder le fichier
+            date_start (str): Date de début au format 'DD/MM/YYYY'
+            date_stop (str): Date de fin au format 'DD/MM/YYYY'
+        """
+        # Construire l'URL basée sur le département (caisse régionale)
+        # URL exacte observée dans votre XHR
+        download_url = f"{self.session.url}/ca-"+self.region+"/professionnel/operations/operations-courantes/telechargement/jcr:content.telechargementServlet.json"
+        
+        # Construction du payload selon le format observé
+        payload = {
+            "comptes": [
+                account_number
+            ],
+            "format": format,
+            "debut": date_start,  # Format attendu: "DD/MM/YYYY"
+            "fin": date_stop,     # Format attendu: "DD/MM/YYYY"
+            "type": "m",          # m = mensuel? à confirmer
+            "dateDebutList": {
+                account_number: date_start
+            }
+        }
+        print(f"Téléchargement depuis {download_url}")
+        print(f"Paramètres: {payload}")
+        
+        # Utiliser la session existante qui contient déjà l'authentification
+        response = requests.post(
+            url=download_url,
+            json=payload,
+            cookies=self.session.cookies,
+            verify=self.session.ssl_verify
+        )
+        
+        if response.status_code != 200:
+            raise Exception(f"Échec du téléchargement: {response.status_code} - {response.text[:100]}")
+        
+        # Sauvegarder ou retourner le contenu
+        if output_path:
+            # Créer le répertoire parent si nécessaire
+            parent_dir = os.path.dirname(output_path)
+            if parent_dir and not os.path.exists(parent_dir):
+                os.makedirs(parent_dir, exist_ok=True)
+                
+            with open(output_path, 'wb') as f:
+                f.write(response.content)
+            return output_path
+        else:
+            return response.content
